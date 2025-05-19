@@ -1,66 +1,22 @@
-/* ===== VARIABLES CSS ===== */
+/* Variables */
 :root {
     /* Couleurs */
-    --primary-color: #4f46e5;
-    --primary-dark: #4338ca;
-    --secondary-color: #10b981;
-    --dark-color: #1f2937;
-    --dark-alt: #374151;
-    --light-color: #f9fafb;
-    --light-alt: #f3f4f6;
-    --text-color: #4b5563;
-    --text-light: #9ca3af;
+    --primary: #4f46e5;
+    --secondary: #10b981;
+    --dark: #1f2937;
+    --light: #f9fafb;
+    --gray: #6b7280;
     --white: #ffffff;
     --black: #000000;
-    --danger: #ef4444;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --info: #3b82f6;
     
     /* Polices */
-    --body-font: 'Poppins', sans-serif;
-    --heading-font: 'Poppins', sans-serif;
+    --font: 'Poppins', sans-serif;
     
-    /* Tailles de police */
-    --biggest-font: 3.5rem;
-    --h1-font: 2.5rem;
-    --h2-font: 2rem;
-    --h3-font: 1.5rem;
-    --h4-font: 1.25rem;
-    --normal-font: 1rem;
-    --small-font: 0.875rem;
-    --smaller-font: 0.75rem;
-    
-    /* Espacements */
-    --mb-0-5: 0.5rem;
-    --mb-0-75: 0.75rem;
-    --mb-1: 1rem;
-    --mb-1-5: 1.5rem;
-    --mb-2: 2rem;
-    --mb-2-5: 2.5rem;
-    --mb-3: 3rem;
-    
-    /* Z-index */
-    --z-tooltip: 10;
-    --z-fixed: 100;
-    --z-modal: 1000;
-    
-    /* Ombres */
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    
-    /* Bordures */
-    --border-radius: 8px;
-    --border-radius-sm: 4px;
-    --border-radius-lg: 12px;
-    --border-radius-xl: 20px;
-    --border-radius-full: 9999px;
-    
-    /* Transitions */
+    /* Tailles */
+    --container: 1200px;
+    --radius: 8px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
-    --transition-slow: all 0.5s ease;
-    --transition-fast: all 0.15s ease;
 }
 
 /* ===== Reset CSS ===== */
