@@ -212,17 +212,86 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Navigation fluide
+    // Navigation fluide avec attente de la fin d'animation Spline
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             
             const target = document.querySelector(this.getAttribute('href'));
+            const splineViewer = document.querySelector('spline-viewer');
+            
             if (target) {
-                window.scrollTo({
-                    top: target.offsetTop,
-                    behavior: 'smooth'
-                });
+                // Animation de la scène Spline avant de défiler
+                if (splineViewer && splineViewer.spline && this.getAttribute('href') !== '#accueil') {
+                    // Durée d'animation avant de défiler (2 secondes)
+                    const animationDuration = 2;
+                    
+                    // Animation de zoom arrière pour un effet de transition
+                    const timeline = gsap.timeline({
+                        onComplete: () => {
+                            // Une fois l'animation terminée, on défile vers la section cible
+                            window.scrollTo({
+                                top: target.offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                    
+                    // Effet de zoom arrière et rotation
+                    try {
+                        timeline.to('.hero-overlay-content', {
+                            opacity: 0,
+                            y: -50,
+                            duration: animationDuration / 2
+                        });
+                        
+                        // Animation spécifique pour le modèle Spline
+                        let currentScale = 1;
+                        let endScale = 0.5;
+                        let rotationY = 180;
+                        
+                        // Pour éviter les bugs, utiliser requestAnimationFrame
+                        let startTime = null;
+                        
+                        function animateSpline(timestamp) {
+                            if (!startTime) startTime = timestamp;
+                            
+                            const elapsed = timestamp - startTime;
+                            const progress = Math.min(elapsed / (animationDuration * 1000), 1);
+                            
+                            // Calculer les valeurs d'animation
+                            const scale = currentScale - (progress * (currentScale - endScale));
+                            const rotation = progress * rotationY;
+                            
+                            // Appliquer les transformations au modèle Spline
+                            try {
+                                splineViewer.spline.setScale(scale, scale, scale);
+                                splineViewer.spline.setRotation(0, rotation, 0);
+                            } catch (e) {
+                                console.log('Erreur lors de l\'animation Spline:', e);
+                            }
+                            
+                            if (progress < 1) {
+                                requestAnimationFrame(animateSpline);
+                            }
+                        }
+                        
+                        requestAnimationFrame(animateSpline);
+                    } catch (e) {
+                        console.log('Erreur:', e);
+                        // En cas d'erreur, défiler immédiatement
+                        window.scrollTo({
+                            top: target.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else {
+                    // Défilement normal si ce n'est pas depuis la hero section
+                    window.scrollTo({
+                        top: target.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });

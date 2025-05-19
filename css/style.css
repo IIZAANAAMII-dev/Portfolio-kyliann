@@ -35,8 +35,8 @@ html {
 body {
     font-family: var(--font);
     line-height: 1.6;
-    color: var(--dark);
-    background: var(--white);
+    color: var(--light);
+    background: var(--bg-dark);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -166,10 +166,11 @@ button {
 }
 
 .nav-logo {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: var(--dark);
+    color: var(--white);
     text-decoration: none;
+    letter-spacing: 1px;
 }
 
 .nav-menu {
