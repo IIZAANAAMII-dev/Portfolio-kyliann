@@ -200,9 +200,8 @@ button {
     position: relative;
     width: 100%;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
 }
 
@@ -276,18 +275,25 @@ button {
     gap: 1rem;
 }
 
-.hero-spline-container {
+/* Suppression du conteneur inutile */
+
+spline-viewer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    border: none;
+    outline: none;
 }
 
-spline-viewer {
-    width: 100%;
+.container {
+    position: relative;
+    z-index: 2;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-overlay-content {
@@ -297,7 +303,7 @@ spline-viewer {
     text-align: center;
     max-width: 800px;
     padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5px);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
