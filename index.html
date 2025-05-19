@@ -46,29 +46,32 @@
 
     <main>
         <!-- Section Accueil -->
-        <section id="accueil" class="section hero">
+        <section class="hero" id="accueil">
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="hero-title">
-                        <span class="greeting">Bonjour, je suis</span>
-                        <span class="name">Kylian</span>
-                        <span class="job">Développeur Web</span>
-                    </h1>
-                    <p class="hero-text">Je crée des expériences numériques uniques et mémorables</p>
-                    <div class="hero-buttons">
-                        <a href="#projets" class="btn btn-primary">Voir mes projets</a>
-                        <a href="#contact" class="btn btn-outline">Me contacter</a>
+                    <div class="hero-text">
+                        <h1 class="hero-title">Salut, je suis <span>Kyliann</span></h1>
+                        <h2 class="hero-subtitle">Développeur <span class="typed-text"></span></h2>
+                        <p class="hero-description">Je développe des sites web et applications modernes avec passion.</p>
+                        <div class="hero-btns">
+                            <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+                            <a href="#contact" class="btn btn-outline">Contactez-moi</a>
+                        </div>
                     </div>
-                </div>
-                <div class="hero-image">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/500x600" alt="Kylian" class="profile-img">
+                    <div class="hero-model">
+                        <!-- Visualiseur Spline 3D -->
+                        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"></script>
+                        <spline-viewer url="https://prod.spline.design/6ck7Z5lQfGSGSdPt/scene.splinecode"></spline-viewer>
                     </div>
                 </div>
             </div>
             <div class="scroll-down">
-                <span>Défiler vers le bas</span>
-                <i class="fas fa-chevron-down"></i>
+                <a href="#apropos" class="mouse-wrapper">
+                    <span class="mouse">
+                        <span class="mouse-wheel"></span>
+                    </span>
+                    <span>Scroll Down</span>
+                </a>
             </div>
         </section>
 

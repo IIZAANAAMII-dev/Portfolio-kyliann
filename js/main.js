@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Animation de la hero section au scroll
-    gsap.to('.hero-content', {
+    gsap.to('.hero-text', {
         scrollTrigger: {
             trigger: '.hero',
             start: 'top top',
@@ -77,6 +77,29 @@ document.addEventListener('DOMContentLoaded', () => {
         y: 100,
         opacity: 0.5,
         ease: 'none'
+    });
+    
+    // Animation du modèle Spline au scroll
+    document.addEventListener('DOMContentLoaded', () => {
+        // Attendre que le viewer Spline soit chargé
+        const splineViewer = document.querySelector('spline-viewer');
+        if (splineViewer) {
+            splineViewer.addEventListener('load', () => {
+                // Une fois chargé, on peut manipuler le modèle avec ScrollTrigger
+                ScrollTrigger.create({
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true,
+                    onUpdate: (self) => {
+                        // Rotation du modèle basée sur le défilement
+                        if (splineViewer.spline) {
+                            splineViewer.spline.setRotation(0, self.progress * 360, 0);
+                        }
+                    }
+                });
+            });
+        }
     });
     
     // Animation des formes en arrière-plan au scroll
