@@ -19,10 +19,8 @@
     --transition: all 0.3s ease;
 }
 
-/* ===== Reset CSS ===== */
-*, 
-*::before, 
-*::after {
+/* Reset */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -34,51 +32,30 @@ html {
 }
 
 body {
-    font-family: var(--body-font);
-    font-size: var(--normal-font);
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-color);
-    background-color: var(--white);
-    overflow-x: hidden;
+    font-family: var(--font);
+    line-height: 1.6;
+    color: var(--dark);
+    background: var(--white);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--heading-font);
-    font-weight: 700;
-    line-height: 1.3;
-    color: var(--dark-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
 }
 
 a {
     text-decoration: none;
-    color: inherit;
-    transition: var(--transition);
-}
-
-ul, ol {
-    list-style: none;
+    color: var(--primary);
 }
 
 img {
     max-width: 100%;
     height: auto;
-    display: block;
-}
-
-button, 
-input, 
-textarea, 
-select {
-    font-family: var(--body-font);
-    font-size: var(--normal-font);
-    outline: none;
-    border: none;
-    background: none;
 }
 
 button {
     cursor: pointer;
+    font-family: var(--font);
 }
 
 /* ===== Classes utilitaires ===== */
