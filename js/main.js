@@ -66,35 +66,60 @@ document.addEventListener('DOMContentLoaded', () => {
             }, '-=0.2');
     }
     
-    // Animation de la hero section au scroll
-    gsap.to('.hero-text', {
+    // Animation du contenu superposé sur la hero section au scroll
+    gsap.to('.hero-overlay-content', {
         scrollTrigger: {
             trigger: '.hero',
             start: 'top top',
             end: 'bottom top',
             scrub: true
         },
-        y: 100,
-        opacity: 0.5,
-        ease: 'none'
+        y: 50,
+        opacity: 0,
+        ease: 'power1.in'
     });
     
-    // Animation du modèle Spline au scroll
+    // Animation du modèle Spline interactif
     document.addEventListener('DOMContentLoaded', () => {
         // Attendre que le viewer Spline soit chargé
         const splineViewer = document.querySelector('spline-viewer');
         if (splineViewer) {
+            // Masquer le loader une fois Spline chargé
             splineViewer.addEventListener('load', () => {
-                // Une fois chargé, on peut manipuler le modèle avec ScrollTrigger
+                // Masquer le loader
+                const loader = document.querySelector('.loader');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                }
+                
+                // Animer l'arrivée du contenu superposé
+                gsap.from('.hero-overlay-content', {
+                    y: 50,
+                    opacity: 0,
+                    duration: 1.2,
+                    ease: 'power3.out',
+                    delay: 0.5
+                });
+                
+                // Animation au scroll pour le modèle Spline
                 ScrollTrigger.create({
                     trigger: '.hero',
                     start: 'top top',
                     end: 'bottom top',
                     scrub: true,
                     onUpdate: (self) => {
-                        // Rotation du modèle basée sur le défilement
+                        // Effet de zoom et rotation sur le modèle basé sur le défilement
                         if (splineViewer.spline) {
-                            splineViewer.spline.setRotation(0, self.progress * 360, 0);
+                            try {
+                                // Rotation du modèle
+                                splineViewer.spline.setRotation(0, self.progress * 180, 0);
+                                // Effet de zoom arrière
+                                const scale = 1 - (self.progress * 0.2);
+                                splineViewer.spline.setScale(scale, scale, scale);
+                            } catch (e) {
+                                console.log('Erreur lors de l\'animation Spline:', e);
+                            }
                         }
                     }
                 });
