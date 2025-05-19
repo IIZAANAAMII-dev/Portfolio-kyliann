@@ -67,8 +67,120 @@ button {
     padding: 0 1rem;
 }
 
-.section {
-    padding: 4rem 0;
+/* Structure principale */
+body {
+    overflow-x: hidden; /* Masquer le débordement horizontal */
+}
+
+/* Hero section avec scroll vertical normal */
+.hero {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+    z-index: 10;
+}
+
+/* Structure du défilement horizontal */
+.horizontal-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--bg-dark);
+}
+
+/* Container horizontal pour les sections après la hero */
+.horizontal-container {
+    display: flex; 
+    width: max-content; /* Important pour GSAP */
+    height: auto;
+    min-height: 100vh;
+    background-color: var(--bg-dark);
+}
+
+/* Style pour les sections horizontales */
+.horizontal-section, 
+.page {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 1rem;
+}
+
+/* Styles pour la section verticale après le défilement horizontal */
+.vertical-section {
+    padding: 6rem 0;
+    background-color: var(--bg-dark);
+    position: relative;
+    z-index: 5;
+}
+
+.vertical-content {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.vertical-content p {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #c5c5c5;
+}
+
+.vertical-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.vertical-box {
+    flex: 0 0 calc(33.333% - 2rem);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vertical-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.box-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.vertical-box h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.vertical-box p {
+    color: #c5c5c5;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 992px) {
+    .vertical-box {
+        flex: 0 0 calc(50% - 2rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .vertical-box {
+        flex: 0 0 100%;
+    }
 }
 
 .section-title {
@@ -156,73 +268,182 @@ button {
     width: 100%;
     background: transparent;
     z-index: 100;
-    padding: 1.5rem 0;
+    padding: 2rem 0;
+    transition: all 0.4s ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.header.scrolled {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem 0;
 }
 
 .nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    padding: 0;
 }
 
-.nav-logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--white);
-    text-decoration: none;
-    letter-spacing: 1px;
+.nav-menu-container {
+    display: flex;
+    justify-content: center;
 }
 
 .nav-menu {
     display: flex;
-    gap: 3rem;
+    justify-content: center;
+    background-color: rgba(30, 30, 30, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.8rem 2rem;
+    gap: 2rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Styles supprimés car éléments retirés du HTML */
+
+/* Styles pour le menu mobile */
+body.no-scroll {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        position: fixed;
+        top: 1.5rem;
+        right: 1.5rem;
+        display: block;
+    }
+    
+    .nav-menu-container {
+        display: none;
+    }
+    
+    /* Menu mobile qui apparaît depuis le bas */
+    .nav-menu-container.active {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+        z-index: 9;
+        animation: slideUp 0.3s ease-out;
+    }
+    
+    @keyframes slideUp {
+        from {
+            transform: translateY(100%);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+    
+    .nav-menu {
+        width: 100%;
+        border-radius: 8px;
+        padding: 0.8rem;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .nav-link {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
 }
 
 .nav-link {
-    color: var(--white);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition);
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    position: relative;
-    padding: 0.5rem 0;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
 }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary);
-    transition: var(--transition);
+.nav-link:hover {
+    color: var(--white);
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
-}
-
-.nav-link:hover,
 .nav-link.active {
-    color: var(--primary);
+    color: var(--white);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-toggle {
     display: none;
-    font-size: 1.5rem;
+    background: transparent;
+    border: none;
     cursor: pointer;
+    padding: 0;
+    z-index: 10;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 2px;
+    background-color: var(--white);
+    transition: var(--transition);
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: var(--white);
+    transition: var(--transition);
+}
+
+.hamburger::before {
+    transform: translateY(-8px);
+}
+
+.hamburger::after {
+    transform: translateY(8px);
+}
+
+/* Style pour le hamburger quand le menu est ouvert */
+.nav-toggle.active .hamburger {
+    background-color: transparent;
+}
+
+.nav-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+}
+
+.nav-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
 }
 
 /* Hero Section */
 .hero {
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    margin: 0;
+    background: var(--bg-dark);
     padding: 0;
+    margin: 0;
     overflow: hidden;
 }
 
@@ -407,3 +628,54 @@ spline-viewer {
         transform: translateY(-5px);
     }
 }
+.horizontal-container {
+    width: 400%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+  .main-wrapper {
+    width: 100%;
+    height: auto;
+  }
+  .page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #home {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  spline-viewer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  #about {
+    background-color: rgb(197, 98, 5);
+  }
+  #projects {
+    background-color: rgb(207, 221, 13);
+  }
+  #project01 {
+    background-color: rgb(26, 224, 19);
+  }
+  #project02 {
+    background-color: rgb(2, 156, 79);
+  }
+  #project03 {
+    background-color: rgb(9, 138, 73);
+  }
+  #contact {
+    background-color: rgb(16, 158, 214);
+  }

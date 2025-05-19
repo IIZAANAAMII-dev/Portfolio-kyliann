@@ -23,30 +23,30 @@
         </div>
     </div>
 
-    <!-- En-tête -->
+    <!-- En-tête avec menu centré style Magician -->
     <header class="header">
-        <nav class="nav container">
-            <a href="#" class="nav-logo">Kylian</a>
-            
-            <div class="nav-menu">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#accueil" class="nav-link active">Accueil</a></li>
-                    <li class="nav-item"><a href="#apropos" class="nav-link">À Propos</a></li>
-                    <li class="nav-item"><a href="#competences" class="nav-link">Compétences</a></li>
-                    <li class="nav-item"><a href="#projets" class="nav-link">Projets</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="nav-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-menu-container">
+                    <div class="nav-menu">
+                        <a href="#accueil" class="nav-link active">Accueil</a>
+                        <a href="#apropos" class="nav-link">À Propos</a>
+                        <a href="#competences" class="nav-link">Compétences</a>
+                        <a href="#projets" class="nav-link">Projets</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </div>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Menu de navigation">
+                    <span class="hamburger"></span>
+                </button>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <!-- Section Accueil avec Spline 3D plein écran -->
-        <section class="hero" id="accueil">
+        <!-- SECTION 1: HERO AVEC SPLINE 3D -->
+        <section id="home" class="page">
             <!-- Visualiseur Spline 3D en fond plein écran -->
             <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"></script>
             <spline-viewer url="https://prod.spline.design/6ck7Z5lQfGSGSdPt/scene.splinecode"></spline-viewer>
@@ -63,287 +63,36 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="scroll-down">
-                <a href="#apropos" class="mouse-wrapper">
-                    <span class="mouse">
-                        <span class="mouse-wheel"></span>
-                    </span>
-                    <span>Scroll Down</span>
-                </a>
-            </div>
         </section>
 
-        <!-- Section À Propos -->
-        <section id="apropos" class="section about">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">À Propos de <span>Moi</span></h2>
-                    <div class="section-line"></div>
+        <!-- SECTION 2: HORIZONTAL SCROLL -->
+        <div class="horizontal-wrapper">
+            <div class="horizontal-container">
+                <div id="projects" class="page">
+                    <h2>projects</h2>
                 </div>
-                
-                <div class="about-content">
-                    <div class="about-image">
-                        <div class="image-wrapper">
-                            <img src="https://via.placeholder.com/400x500" alt="À propos de moi" class="about-img">
-                        </div>
-                    </div>
-                    <div class="about-text">
-                        <h3>Développeur Web Passionné</h3>
-                        <p>Je m'appelle Kylian et je suis un développeur web passionné par la création d'expériences numériques exceptionnelles. Avec plus de 3 ans d'expérience dans le développement web, j'ai travaillé sur divers projets allant des sites vitrines aux applications web complexes.</p>
-                        
-                        <div class="about-info">
-                            <div class="info-item">
-                                <span class="info-label">Nom :</span>
-                                <span class="info-value">Kylian</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Email :</span>
-                                <span class="info-value">contact@kylian-dev.com</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Téléphone :</span>
-                                <span class="info-value">+33 6 12 34 56 78</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-label">Localisation :</span>
-                                <span class="info-value">Paris, France</span>
-                            </div>
-                        </div>
-                        
-                        <a href="#" class="btn btn-primary">Télécharger mon CV</a>
-                    </div>
+                <div id="project01" class="page">
+                    <h2>project 01</h2>
+                </div>
+                <div id="project03" class="page">
+                    <h2>project 03</h2>
                 </div>
             </div>
-        </section>
-
-        <!-- Section Compétences -->
-        <section id="competences" class="section skills">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Mes <span>Compétences</span></h2>
-                    <div class="section-line"></div>
-                </div>
-                
-                <div class="skills-container">
-                    <div class="skills-box">
-                        <h3>Développement Frontend</h3>
-                        <div class="skill">
-                            <div class="skill-info">
-                                <span>HTML5 & CSS3</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 0" data-width="95"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-info">
-                                <span>JavaScript</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 0" data-width="85"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-info">
-                                <span>React</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 0" data-width="80"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="skills-box">
-                        <h3>Développement Backend</h3>
-                        <div class="skill">
-                            <div class="skill-info">
-                                <span>Node.js</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 0" data-width="75"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-info">
-                                <span>PHP</span>
-                                <span>70%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 0" data-width="70"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <div class="skill-info">
-                                <span>Base de données</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 0" data-width="80"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section Projets -->
-        <section id="projets" class="section projects">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Mes <span>Projets</span></h2>
-                    <div class="section-line"></div>
-                </div>
-                
-                <div class="projects-filter">
-                    <button class="filter-btn active" data-filter="all">Tous</button>
-                    <button class="filter-btn" data-filter="web">Web</button>
-                    <button class="filter-btn" data-filter="app">Application</button>
-                    <button class="filter-btn" data-filter="design">Design</button>
-                </div>
-                
-                <div class="projects-grid">
-                    <!-- Projet 1 -->
-                    <div class="project-item" data-category="web">
-                        <div class="project-img">
-                            <img src="https://via.placeholder.com/600x400" alt="Projet 1">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <h3>Site E-commerce</h3>
-                                    <p>Développement Web</p>
-                                    <div class="project-links">
-                                        <a href="#" class="project-link"><i class="fas fa-link"></i></a>
-                                        <a href="#" class="project-link"><i class="fas fa-search"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Projet 2 -->
-                    <div class="project-item" data-category="app">
-                        <div class="project-img">
-                            <img src="https://via.placeholder.com/600x400" alt="Projet 2">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <h3>Application Mobile</h3>
-                                    <p>Développement Mobile</p>
-                                    <div class="project-links">
-                                        <a href="#" class="project-link"><i class="fas fa-link"></i></a>
-                                        <a href="#" class="project-link"><i class="fas fa-search"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Projet 3 -->
-                    <div class="project-item" data-category="design">
-                        <div class="project-img">
-                            <img src="https://via.placeholder.com/600x400" alt="Projet 3">
-                            <div class="project-overlay">
-                                <div class="project-info">
-                                    <h3>Design UI/UX</h3>
-                                    <p>Design Graphique</p>
-                                    <div class="project-links">
-                                        <a href="#" class="project-link"><i class="fas fa-link"></i></a>
-                                        <a href="#" class="project-link"><i class="fas fa-search"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Plus de projets peuvent être ajoutés ici -->
-                </div>
-                
-                <div class="text-center mt-8">
-                    <a href="#" class="btn btn-primary">Voir plus de projets</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section Contact -->
-        <section id="contact" class="section contact">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Me <span>Contacter</span></h2>
-                    <div class="section-line"></div>
-                    <p class="section-subtitle">N'hésitez pas à me contacter pour toute question ou opportunité de collaboration</p>
-                </div>
-                
-                <div class="contact-container">
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Localisation</h3>
-                                <p>Paris, France</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Email</h3>
-                                <p>contact@kylian-dev.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h3>Téléphone</h3>
-                                <p>+33 6 12 34 56 78</p>
-                            </div>
-                        </div>
-                        
-                        <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                    
-                    <form id="contact-form" class="contact-form">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Votre nom" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Votre email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" class="form-control" placeholder="Sujet" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" class="form-control" rows="5" placeholder="Votre message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
+        </div>
+    
+        <div id="contact" class="page">
+            <h2>contact</h2>
+        </div>
     </main>
 
     <!-- Pied de page -->
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
                     <a href="#" class="footer-logo-link">Kylian</a>
                 </div>
-                <p class="footer-text">© 2025 Tous droits réservés. Conçu avec ❤️ par Kylian</p>
+                <p class="footer-text"> 2025 Tous droits réservés. Conçu avec  par Kylian</p>
                 <div class="footer-social">
                     <a href="#" class="footer-social-link"><i class="fab fa-github"></i></a>
                     <a href="#" class="footer-social-link"><i class="fab fa-linkedin-in"></i></a>
@@ -362,6 +111,8 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/Observer.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/horizontal-scroll.js"></script>
 </body>
 </html>
