@@ -1,0 +1,46 @@
+/* Style pour la section après le défilement horizontal */
+.next-vertical-section {
+    min-height: 100vh;
+    padding: 100px 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #202040 100%);
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.next-vertical-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.next-vertical-section h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.next-vertical-section p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Animation d'entrée pour la section */
+.next-vertical-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.next-vertical-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
