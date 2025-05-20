@@ -3,94 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kyliann - Portfolio</title>
-    <!-- Fonts -->
+    <title>Kyliann - Développeur Web Créatif</title>
+    <meta name="description" content="Portfolio de Kyliann, développeur web passionné par la création d'expériences numériques uniques et mémorables.">
+    <meta name="keywords" content="développeur web, portfolio, développement frontend, UI/UX design, Kyliann">
+    <meta name="author" content="Kyliann">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    
+    <!-- Polices Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- AOS - Animate On Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Spline Viewer (pour les animations 3D) -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.10/build/spline-viewer.js"></script>
+    
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/cursor.css">
     <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/herosection.css">
-    <link rel="stylesheet" href="css/horizontal.css">
-    <!-- GSAP pour les animations -->
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/sections/projects.css">
+    <link rel="stylesheet" href="css/sections/horizontal-scroll.css">
+    <link rel="stylesheet" href="css/sections/about.css">
+    <link rel="stylesheet" href="css/sections/skills.css">
+    <link rel="stylesheet" href="css/sections/contact.css">
+    <link rel="stylesheet" href="css/sections/footer.css">
+   
+    <!-- GSAP et plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Locomotive Scroll -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+ 
    
     
     <!-- Script pour charger Spline dynamiquement -->
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"></script>
-    <script>
-        function initSplines() {
-            // Afficher la section hero
-            const heroSection = document.querySelector('.hero');
-            if (heroSection) {
-                heroSection.style.display = 'flex';
-            }
-
-            // Initialiser tous les viewers Spline
-            const initSplineViewers = () => {
-                const splineViewers = document.querySelectorAll('spline-viewer');
-                
-                splineViewers.forEach(viewer => {
-                    // Configurer chaque viewer
-                    viewer.style.width = '100%';
-                    viewer.style.height = '100%';
-                    viewer.style.position = 'absolute';
-                    viewer.style.top = '0';
-                    viewer.style.left = '0';
-                    
-                    // Activer l'effet de flou sur le conteneur parent
-                    const container = viewer.closest('.spline-container');
-                    if (container) {
-                        container.style.opacity = '1';
-                    }
-                    
-                    // Redimensionner le Spline si nécessaire
-                    if (viewer.resize) {
-                        viewer.resize();
-                    }
-                });
-                
-                console.log(splineViewers.length + ' Spline viewers initialisés');
-                
-                // Activer le défilement une fois prêt
-                if (window.enableSmoothScroll) {
-                    window.enableSmoothScroll();
-                }
-            };
-            
-            // Attendre que le DOM soit complètement chargé
-            if (document.readyState === 'complete') {
-                initSplineViewers();
-            } else {
-                window.addEventListener('load', initSplineViewers);
-            }
-            
-            // Réinitialiser les Splines lors du redimensionnement
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    document.querySelectorAll('spline-viewer').forEach(viewer => {
-                        if (viewer.resize) viewer.resize();
-                    });
-                }, 250);
-            });
-        }
-        
-        // Démarrer l'initialisation
-        document.addEventListener('DOMContentLoaded', initSplines);
-    </script>
    
 </head>
-<body>
+<body data-scroll-container>
+    <!-- Écran de chargement -->
+    <div class="loading-screen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Chargement...</div>
+    </div>
     
     <!-- Curseur personnalisé -->
     <div class="cursor"></div>
@@ -123,16 +88,25 @@
             <spline-viewer url="https://prod.spline.design/6ck7Z5lQfGSGSdPt/scene.splinecode" loading="eager"></spline-viewer>
         </div>
         
-       
         <!-- Contenu superposé -->
         <div class="hero-content">
-            <div class="container">
-                <h1 class="hero-title">Salut, je suis <span>Kyliann</span></h1>
-                <h2 class="hero-subtitle">Développeur <span class="typed-text"></span></h2>
-                <p class="hero-description">Je crée des expériences numériques uniques et innovantes</p>
-                <div class="hero-buttons">
-                    <a href="#projets" class="btn btn-primary">Voir mes projets</a>
-                    <a href="#contact" class="btn btn-outline">Me contacter</a>
+            <div class="hero-content">
+                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">Kyliann</h1>
+                <h2 class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                    <span class="typed-text" 
+                          data-words="Développeur Web,Designer UI/UX,Créatif,Passionné" 
+                          data-type-speed="100" 
+                          data-back-speed="50" 
+                          data-back-delay="2000" 
+                          data-loop="true" 
+                          data-cursor="|" 
+                          data-cursor-blinking="true">
+                    </span>
+                </h2>
+                <p class="hero-description" data-aos="fade-up" data-aos-delay="300">Je crée des expériences numériques uniques et mémorables</p>
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#contact" class="btn btn-primary">Me contacter</a>
+                    <a href="#projects" class="btn btn-outline">Voir mes projets</a>
                 </div>
             </div>
         </div>
@@ -149,73 +123,497 @@
             </div>
         </div>
     </section>
-    <div class="horizontal">
-        <div class="horizontal-container">
-            <!-- Section d'accueil -->
-            <div class="partie partie-accueil">
-                <div class="partie-content">
-                    <h2>Bienvenue</h2>
-                    <p>Faites défiler pour explorer mon portfolio</p>
-                    <div class="scroll-hint">
-                        <span>Défiler</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Section Spline 1 -->
-            <section class="partie partie-spline">
-                <div class="spline-container">
-                    <spline-viewer 
-                        url="https://prod.spline.design/SkCVOXFyXeCQBioC/scene.splinecode"
-                        loading="eager"
-                        style="width: 100%; height: 100%;"
-                    ></spline-viewer>
-                </div>
-                <div class="partie-content">
-                    <h2>Mon Univers 3D</h2>
-                    <p>Découvrez mon travail en modélisation 3D</p>
-                </div>
-            </section>
-            
-            <!-- Section Spline 2 -->
-            <section class="partie partie-spline">
-                <div class="spline-container">
-                    <spline-viewer 
-                        url="https://prod.spline.design/CeKN9jVk4uWdqdqd/scene.splinecode"
-                        loading="lazy"
-                        style="width: 100%; height: 100%;"
-                    ></spline-viewer>
-                </div>
-                <div class="partie-content">
-                    <h2>Autre Création</h2>
-                    <p>Une autre démonstration de mes compétences en 3D</p>
-                </div>
-            </section>
-        </div>
-    </div>
-    
-    <section class="competences-section">
+    <!-- Section Projets -->
+    <section id="projects" class="projects-section">
         <div class="container">
-            <h2>Mes compétences</h2>
-            <p>Découvrez mes domaines d'expertise</p>
-            <!-- Ajoutez ici le contenu de vos compétences -->
+            <div class="section-header">
+                <span class="section-subtitle">Mon Portfolio</span>
+                <h2 class="section-title">Mes Derniers Projets</h2>
+                <p>Découvrez une sélection de mes réalisations récentes en design et développement web.</p>
+            </div>
+            
+            <!-- Filtres -->
+            <div class="project-filters">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="ui/ux">UI/UX Design</button>
+                <button class="filter-btn" data-filter="développement">Développement Web</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+            
+            <!-- Grille de projets -->
+            <div class="projects-grid">
+                <!-- Les projets seront chargés dynamiquement par JavaScript -->
+            </div>
         </div>
     </section>
 
+    <!-- Section Défilement Horizontal -->
+    <section class="horizontal-scroll-section" id="experience">
+        <div class="horizontal-scroll-container">
+            <!-- Slide 1 -->
+            <div class="horizontal-scroll-item active">
+                <div class="horizontal-content">
+                    <span class="section-subtitle">Expérience Interactive</span>
+                    <h2 class="horizontal-title">Découvrez mon univers créatif</h2>
+                    <p class="horizontal-description">
+                        Plongez dans un voyage visuel à travers mes projets les plus marquants.
+                        Une expérience immersive qui met en valeur mon approche du design et du développement.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Slide 2 - Spline 1 -->
+            <div class="horizontal-scroll-item spline-item">
+                <div class="spline-container">
+                    <spline-viewer url="https://prod.spline.design/SkCVOXFyXeCQBioC/scene.splinecode"></spline-viewer>
+                    <div class="spline-overlay">
+                        <h3>Design 3D Interactif</h3>
+                        <p>Expérience utilisateur immersive avec des éléments 3D</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="horizontal-scroll-item">
+                <div class="horizontal-content">
+                    <span class="section-subtitle">Projet en vedette</span>
+                    <h2 class="horizontal-title">Interface Utilisateur Avancée</h2>
+                    <p class="horizontal-description">
+                        Une interface utilisateur moderne avec des animations fluides et une expérience utilisateur optimisée.
+                        Conçue pour engager et captiver votre audience.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Slide 4 - Spline 2 -->
+            <div class="horizontal-scroll-item spline-item">
+                <div class="spline-container">
+                    <spline-viewer url="https://prod.spline.design/6ck7Z5lQfGSGSdPt/scene.splinecode"></spline-viewer>
+                    <div class="spline-overlay">
+                        <h3>Animation 3D Interactive</h3>
+                        <p>Création d'expériences web uniques</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="horizontal-scroll-nav">
+            <div class="horizontal-scroll-dot active" data-index="0"></div>
+            <div class="horizontal-scroll-dot" data-index="1"></div>
+            <div class="horizontal-scroll-dot" data-index="2"></div>
+            <div class="horizontal-scroll-dot" data-index="3"></div>
+        </div>
+        
+        <!-- Instructions -->
+        <div class="scroll-instructions">
+            <span>Faites défiler</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+        </div>
+    </section>
 
-   
-    
+    <!-- Section À propos -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll fade-in-up">
+                <span class="section-subtitle">À propos de moi</span>
+                <h2 class="section-title">Qui suis-je ?</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image animate-on-scroll fade-in-left">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/400x500" alt="Kyliann - Développeur" class="profile-image">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+                
+                <div class="about-text animate-on-scroll fade-in-right">
+                    <h3>Développeur passionné & Créatif</h3>
+                    <p>Je m'appelle Kyliann et je suis passionné par la création d'expériences numériques mémorables. Avec une expertise en développement web et une sensibilité pour le design, je m'efforce de créer des solutions à la fois belles et fonctionnelles.</p>
+                    
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Nom :</span>
+                            <span class="detail-value">Kyliann</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Email :</span>
+                            <span class="detail-value">contact@kyliann.dev</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Expérience :</span>
+                            <span class="detail-value">3+ ans</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Téléphone :</span>
+                            <span class="detail-value">+33 6 12 34 56 78</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="btn btn-primary">Me contacter</a>
+                    <a href="#" class="btn btn-outline">Télécharger mon CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll fade-in-up">
+                <span class="section-subtitle">Mes Compétences</span>
+                <h2 class="section-title">Ce que je maîtrise</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="skills-container">
+                <!-- Compétences techniques -->
+                <div class="skills-category animate-on-scroll fade-in-left">
+                    <h3>Techniques</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">HTML5 & CSS3</span>
+                                <span class="skill-percent">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">React.js</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Node.js</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Compétences créatives -->
+                <div class="skills-category animate-on-scroll fade-in-right">
+                    <h3>Créatives</h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">UI/UX Design</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Animation Web</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Graphisme</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Motion Design</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll fade-in-up">
+                <span class="section-subtitle">Restons en contact</span>
+                <h2 class="section-title">Contactez-moi</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">N'hésitez pas à me contacter pour discuter de votre projet ou simplement pour dire bonjour !</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info animate-on-scroll fade-in-left">
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Localisation</h4>
+                            <p>Paris, France</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>contact@kyliann.dev</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Téléphone</h4>
+                            <p>+33 6 12 34 56 78</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form animate-on-scroll fade-in-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Votre email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Sujet">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" placeholder="Votre message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">Kyliann</a>
+                    <p>Créateur d'expériences numériques uniques et mémorables.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#skills">Compétences</a></li>
+                        <li><a href="#projects">Projets</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Inscrivez-vous pour recevoir les dernières mises à jour.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kyliann. Tous droits réservés.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton de retour en haut -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <!-- Scripts -->
+    <!-- GSAP avec ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+    
+    <!-- AOS - Animate On Scroll -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Locomotive Scroll (défilement fluide) -->
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+    
+    <!-- Scripts personnalisés -->
+    <script src="js/main.js"></script>
+    <script src="js/components/projects.js"></script>
+    <script src="js/components/horizontalScroll.js"></script>
+    <script src="js/components/typedText.js"></script>
+    <script src="js/components/animations.js" type="module"></script>
+    
     <script>
-        // Vérifier que GSAP est chargé
-        console.log('GSAP chargé :', typeof gsap !== 'undefined');
+        // Initialisation AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+        
+        // Initialisation de Locomotive Scroll
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('[data-scroll-container]'),
+            smooth: true,
+            smartphone: { smooth: true },
+            tablet: { smooth: true },
+            getDirection: true
+        });
+        
+        // Mise à jour de Locomotive Scroll lors du chargement des images
+        window.addEventListener('load', () => {
+            scroll.update();
+        });
+        
+        // Mise à jour de Locomotive Scroll lors du redimensionnement de la fenêtre
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            document.body.classList.add('resize-animation-stopper');
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                document.body.classList.remove('resize-animation-stopper');
+                scroll.update();
+            }, 400);
+        });
+        
+        // Initialisation des composants au chargement du DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animation du header de la section projets
+            const header = document.querySelector('.section-header');
+            if (header) {
+                setTimeout(() => {
+                    header.classList.add('animate');
+                }, 500);
+            }
+            
+            // Animation du bouton de retour en haut
+            const backToTop = document.querySelector('.back-to-top');
+            if (backToTop) {
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                });
+                
+                backToTop.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    scroll.scrollTo(0, {
+                        duration: 1.2,
+                        easing: [0.25, 0.1, 0.25, 1]
+                    });
+                });
+            }
+            
+            // Animation des barres de compétences au défilement
+            const skillBars = document.querySelectorAll('.skill-progress');
+            if (skillBars.length > 0) {
+                const animateSkillBars = () => {
+                    skillBars.forEach(bar => {
+                        const width = bar.getAttribute('style').match(/\d+/)[0];
+                        bar.style.width = '0%';
+                        
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    bar.style.width = width + '%';
+                                    observer.unobserve(entry.target);
+                                }
+                            });
+                        }, { threshold: 0.5 });
+                        
+                        observer.observe(bar);
+                    });
+                };
+                
+                // Démarrer l'animation après un court délai
+                setTimeout(animateSkillBars, 500);
+            }
+            
+            // Gestion du formulaire de contact
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Récupération des données du formulaire
+                    const formData = new FormData(contactForm);
+                    const formObject = {};
+                    formData.forEach((value, key) => {
+                        formObject[key] = value;
+                    });
+                    
+                    // Ici, vous pouvez ajouter le code pour envoyer les données à un serveur
+                    console.log('Données du formulaire :', formObject);
+                    
+                    // Afficher un message de succès
+                    alert('Votre message a été envoyé avec succès ! Je vous recontacterai dès que possible.');
+                    contactForm.reset();
+                });
+            }
+        });
     </script>
-    <script src="js/nav.js"></script>
-    <script src="js/cursor.js"></script>
-    <script src="js/herosection.js"></script>
-    <script src="js/scroll.js"></script>
-   <script src="js/horizontal.js"></script>
-    </div> <!-- fin js-scroll -->
 </body>
 </html>
