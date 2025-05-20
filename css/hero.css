@@ -7,10 +7,10 @@
     justify-content: start;
     padding: 0 10%;
     overflow: hidden;
-    background-color: var(--bg-darker);
+    background-color: black;
     color: var(--text-light);
-    z-index: 1;
-    padding-top: 100px; /* Pour laisser de l'espace pour la navigation */
+    z-index: 1; /* Z-index inférieur aux autres sections */
+  
 }
 
 /* Conteneur Spline */
@@ -21,7 +21,17 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    opacity: 1;
+    opacity: 0;
+    animation: fadeIn 2s ease-out 0.5s forwards;
+    transform: scale(1.1);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .spline-container spline-viewer {
@@ -34,15 +44,15 @@
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 600px;
+    max-width: 400px;
     padding: 2.5rem;
     text-align: left;
     background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     color: #fff;
-    margin: 5%;
+    margin: 2%;
     border-radius: 20px;
     opacity: 0;
     transform: translateY(20px);

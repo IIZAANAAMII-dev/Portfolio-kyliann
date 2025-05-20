@@ -1,0 +1,307 @@
+/* Section À propos de moi */
+.about-section {
+    background: url('/img/fond.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    color: #fff;
+}
+
+/* Image d'effet à droite */
+.effet-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background: url('/img/effet.png') no-repeat;
+    background-size: contain;
+    background-position: right center;
+    z-index: 1;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+/* Suppression du pseudo-élément pour un design plus épuré */
+
+.section-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-subtitle {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.2;
+}
+
+.section-divider {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), #7d5fff);
+    margin: 0 auto 1.5rem;
+    border-radius: 2px;
+}
+
+.about-content {
+    display: block;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+}
+
+.about-text {
+    width: 50%;
+    padding-left:0%;
+    padding-top: 10vh;
+    position: relative;
+    z-index: 2;
+}
+
+.about-image {
+    position: absolute;
+    top:0;
+    right: 0;
+    width: 50%;
+    height: auto;
+    z-index: 1;
+}
+
+.image-wrapper {
+    position: relative;
+    overflow: visible;
+    border-radius: 0;
+    box-shadow: none;
+    height: 100%;
+}
+
+.profile-image {
+    width: auto;
+    height: 90vh;
+    max-height: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: bottom right;
+    transition: transform 0.2s ease-out;
+    border-radius: 0;
+    transform-origin: center center;
+}
+
+.image-tag {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 250px;
+    color: #333;
+    line-height: 1.5;
+    backdrop-filter: blur(4px);
+    font-weight: 500;
+}
+
+.top-tag {
+    top:15%;
+    left: 20%;
+    z-index: -1;/* Derrière l'image */
+    transition: transform 0.2s ease-out;
+    
+}
+
+.bottom-tag {
+    bottom: 30%;
+    right: 10%;
+    z-index: 2; /* Au-dessus de l'image */
+    transition: transform 0.2s ease-out;
+}
+
+.about-text p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+    font-size: 1rem;
+    max-width: 90%;
+}
+
+/* Styles pour la section des fonctionnalités */
+.features-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.feature-text h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.feature-text p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.about-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+.detail-value {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Style du bouton */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    position: relative;
+    border-radius: 50px;
+}
+
+.btn-primary {
+    background-color: #fff;
+    color: #222;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary i {
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover i {
+    transform: translateX(5px);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .about-text {
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 60vh; /* Espace pour l'image absolue */
+    }
+    
+    .about-image {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 50vh;
+        text-align: center;
+    }
+    
+    .profile-image {
+        height: 50vh;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .about-text h3 {
+        font-size: 1.5rem;
+    }
+    
+    .about-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+ 
+    
+    .btn {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
