@@ -10,109 +10,212 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- CSS principal -->
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/herosection.css">
+    <link rel="stylesheet" href="css/horizontal.css">
+    <!-- GSAP pour les animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Locomotive Scroll -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+   
+    
+    <!-- Script pour charger Spline dynamiquement -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"></script>
+    <script>
+        function initSplines() {
+            // Afficher la section hero
+            const heroSection = document.querySelector('.hero');
+            if (heroSection) {
+                heroSection.style.display = 'flex';
+            }
+
+            // Initialiser tous les viewers Spline
+            const initSplineViewers = () => {
+                const splineViewers = document.querySelectorAll('spline-viewer');
+                
+                splineViewers.forEach(viewer => {
+                    // Configurer chaque viewer
+                    viewer.style.width = '100%';
+                    viewer.style.height = '100%';
+                    viewer.style.position = 'absolute';
+                    viewer.style.top = '0';
+                    viewer.style.left = '0';
+                    
+                    // Activer l'effet de flou sur le conteneur parent
+                    const container = viewer.closest('.spline-container');
+                    if (container) {
+                        container.style.opacity = '1';
+                    }
+                    
+                    // Redimensionner le Spline si nécessaire
+                    if (viewer.resize) {
+                        viewer.resize();
+                    }
+                });
+                
+                console.log(splineViewers.length + ' Spline viewers initialisés');
+                
+                // Activer le défilement une fois prêt
+                if (window.enableSmoothScroll) {
+                    window.enableSmoothScroll();
+                }
+            };
+            
+            // Attendre que le DOM soit complètement chargé
+            if (document.readyState === 'complete') {
+                initSplineViewers();
+            } else {
+                window.addEventListener('load', initSplineViewers);
+            }
+            
+            // Réinitialiser les Splines lors du redimensionnement
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    document.querySelectorAll('spline-viewer').forEach(viewer => {
+                        if (viewer.resize) viewer.resize();
+                    });
+                }, 250);
+            });
+        }
+        
+        // Démarrer l'initialisation
+        document.addEventListener('DOMContentLoaded', initSplines);
+    </script>
+   
 </head>
 <body>
-    <!-- Chargement -->
-    <div class="loader">
-        <div class="loader-content">
-            <div class="loader-spinner"></div>
-            <p>Chargement...</p>
+    
+    <!-- Curseur personnalisé -->
+    <div class="cursor"></div>
+
+    <!-- Structure pour Locomotive Scroll -->
+    <div id="js-scroll" data-scroll-container>
+    
+    <!-- Barre de navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Accueil</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Section Hero avec Spline -->
+    <section class="hero full-height" id="home">
+        <!-- Conteneur Spline en arrière-plan -->
+        <div class="spline-container">
+            <spline-viewer url="https://prod.spline.design/6ck7Z5lQfGSGSdPt/scene.splinecode" loading="eager"></spline-viewer>
+        </div>
+        
+       
+        <!-- Contenu superposé -->
+        <div class="hero-content">
+            <div class="container">
+                <h1 class="hero-title">Salut, je suis <span>Kyliann</span></h1>
+                <h2 class="hero-subtitle">Développeur <span class="typed-text"></span></h2>
+                <p class="hero-description">Je crée des expériences numériques uniques et innovantes</p>
+                <div class="hero-buttons">
+                    <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+                    <a href="#contact" class="btn btn-outline">Me contacter</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Défilement vers le bas -->
+        <div class="scroll-down">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrow">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+    <div class="horizontal">
+        <div class="horizontal-container">
+            <!-- Section d'accueil -->
+            <div class="partie partie-accueil">
+                <div class="partie-content">
+                    <h2>Bienvenue</h2>
+                    <p>Faites défiler pour explorer mon portfolio</p>
+                    <div class="scroll-hint">
+                        <span>Défiler</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Spline 1 -->
+            <section class="partie partie-spline">
+                <div class="spline-container">
+                    <spline-viewer 
+                        url="https://prod.spline.design/SkCVOXFyXeCQBioC/scene.splinecode"
+                        loading="eager"
+                        style="width: 100%; height: 100%;"
+                    ></spline-viewer>
+                </div>
+                <div class="partie-content">
+                    <h2>Mon Univers 3D</h2>
+                    <p>Découvrez mon travail en modélisation 3D</p>
+                </div>
+            </section>
+            
+            <!-- Section Spline 2 -->
+            <section class="partie partie-spline">
+                <div class="spline-container">
+                    <spline-viewer 
+                        url="https://prod.spline.design/CeKN9jVk4uWdqdqd/scene.splinecode"
+                        loading="lazy"
+                        style="width: 100%; height: 100%;"
+                    ></spline-viewer>
+                </div>
+                <div class="partie-content">
+                    <h2>Autre Création</h2>
+                    <p>Une autre démonstration de mes compétences en 3D</p>
+                </div>
+            </section>
         </div>
     </div>
-
-    <!-- En-tête avec menu centré style Magician -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <div class="nav-menu-container">
-                    <div class="nav-menu">
-                        <a href="#accueil" class="nav-link active">Accueil</a>
-                        <a href="#apropos" class="nav-link">À Propos</a>
-                        <a href="#competences" class="nav-link">Compétences</a>
-                        <a href="#projets" class="nav-link">Projets</a>
-                        <a href="#contact" class="nav-link">Contact</a>
-                    </div>
-                </div>
-                
-                <button class="nav-toggle" aria-label="Menu de navigation">
-                    <span class="hamburger"></span>
-                </button>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <!-- SECTION 1: HERO AVEC SPLINE 3D -->
-        <section id="home" class="page">
-            <!-- Visualiseur Spline 3D en fond plein écran -->
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.96/build/spline-viewer.js"></script>
-            <spline-viewer url="https://prod.spline.design/6ck7Z5lQfGSGSdPt/scene.splinecode"></spline-viewer>
-            
-            <!-- Contenu superposé -->
-            <div class="container">
-                <div class="hero-overlay-content">
-                    <h1 class="hero-title">Salut, je suis <span>Kyliann</span></h1>
-                    <h2 class="hero-subtitle">Développeur <span class="typed-text"></span></h2>
-                    <p class="hero-description">Je développe des sites web et applications modernes avec passion.</p>
-                    <div class="hero-btns">
-                        <a href="#projets" class="btn btn-primary">Voir mes projets</a>
-                        <a href="#contact" class="btn btn-outline">Contactez-moi</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 2: HORIZONTAL SCROLL -->
-        <div class="horizontal-wrapper">
-            <div class="horizontal-container">
-                <div id="projects" class="page">
-                    <h2>projects</h2>
-                </div>
-                <div id="project01" class="page">
-                    <h2>project 01</h2>
-                </div>
-                <div id="project03" class="page">
-                    <h2>project 03</h2>
-                </div>
-            </div>
-        </div>
     
-        <div id="contact" class="page">
-            <h2>contact</h2>
-        </div>
-    </main>
-
-    <!-- Pied de page -->
-    <footer class="footer" id="footer">
+    <section class="competences-section">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <a href="#" class="footer-logo-link">Kylian</a>
-                </div>
-                <p class="footer-text"> 2025 Tous droits réservés. Conçu avec  par Kylian</p>
-                <div class="footer-social">
-                    <a href="#" class="footer-social-link"><i class="fab fa-github"></i></a>
-                    <a href="#" class="footer-social-link"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
+            <h2>Mes compétences</h2>
+            <p>Découvrez mes domaines d'expertise</p>
+            <!-- Ajoutez ici le contenu de vos compétences -->
         </div>
-    </footer>
+    </section>
 
-    <!-- Bouton de retour en haut -->
-    <a href="#" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+
+   
+    
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/Observer.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/horizontal-scroll.js"></script>
+    <script>
+        // Vérifier que GSAP est chargé
+        console.log('GSAP chargé :', typeof gsap !== 'undefined');
+    </script>
+    <script src="js/nav.js"></script>
+    <script src="js/cursor.js"></script>
+    <script src="js/herosection.js"></script>
+    <script src="js/scroll.js"></script>
+   <script src="js/horizontal.js"></script>
+    </div> <!-- fin js-scroll -->
 </body>
 </html>

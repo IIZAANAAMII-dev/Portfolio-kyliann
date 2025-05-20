@@ -1,0 +1,348 @@
+/* horizontal.css */
+.horizontal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0a0a0a;
+    overflow: hidden;
+}
+
+.horizontal-container {
+    display: flex;
+    height: 100%;
+    width: 300vw; /* 3 sections de 100vw */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Styles de base pour chaque partie */
+.partie {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Masquer la barre de défilement */
+.horizontal-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Masquer la barre de défilement */
+.horizontal-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Styles de base pour chaque partie */
+.partie {
+    width: 100vw;
+    min-width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    flex: 0 0 100vw;
+}
+
+/* Section d'accueil */
+.partie-accueil {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+}
+
+/* Sections Spline */
+.partie-spline {
+    background: #000;
+}
+
+/* Conteneur de contenu */
+.partie-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.partie-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.partie-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Indicateur de défilement */
+.scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    opacity: 0.8;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
+}
+
+/* Conteneur Spline */
+.spline-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.spline-container:hover {
+    opacity: 1;
+}
+
+/* Style de base pour le Spline */
+spline-viewer {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.partie-content {
+    max-width: 800px;
+    padding: 2rem;
+    text-align: center;
+    z-index: 2;
+    color: white;
+}
+
+/* Styles spécifiques pour le conteneur Spline */
+.spline-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    overflow: hidden;
+}
+
+.spline-container.loaded {
+    opacity: 1;
+}
+
+/* Assurez-vous que le viewer Spline prend toute la place */
+spline-viewer {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+}
+
+/* Ajustements pour les sections avec Spline */
+.partie.moi,
+.partie.autre-spline {
+    position: relative;
+    overflow: hidden;
+}
+
+.partie-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    pointer-events: none;
+}
+
+.partie-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease 0.3s;
+}
+
+.partie-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease 0.4s;
+}
+
+.partie.active .partie-content h2,
+.partie.active .partie-content p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.partie:not(.active) {
+    opacity: 0.6;
+}
+
+.partie {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.partie.active {
+    opacity: 1;
+}
+
+.partie h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.partie p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    text-align: center;
+    line-height: 1.6;
+    margin: 0 auto 2rem;
+}
+
+/* Styles spécifiques pour chaque partie */
+.blue { 
+    background-color: #1a73e8; 
+    color: white; 
+}
+
+.moi { 
+    background-color: #f8f9fa; 
+    color: #333;
+}
+
+.competences { 
+    background-color: #2c3e50;
+    color: white;
+}
+
+/* Indicateur de défilement */
+.scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: currentColor;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-hint span {
+    display: block;
+    width: 24px;
+    height: 40px;
+    border: 2px solid currentColor;
+    border-radius: 12px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.scroll-hint span::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 8px;
+    background: currentColor;
+    border-radius: 2px;
+    animation: scrollDown 2s infinite;
+}
+
+@keyframes scrollDown {
+    0% { transform: translate(-50%, 0); opacity: 0; }
+    40% { opacity: 1; }
+    100% { transform: translate(-50%, 12px); opacity: 0; }
+}
+
+/* Section compétences en mode vertical */
+.competences-section {
+    min-height: 100vh;
+    height: 100%;
+    padding: 2rem;
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.competences-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.competences-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.competences-section p {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .partie {
+        padding: 4rem 1.5rem;
+    }
+    
+    .partie h2 {
+        font-size: 2rem;
+    }
+    
+    .partie p {
+        font-size: 1rem;
+    }
+}
